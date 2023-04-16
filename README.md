@@ -21,6 +21,13 @@ This software utilizes Spatialite extended SQLite as a data store, .NET Core 6 a
 ## Installation
 
 
+### Linux
+
+### Windows
+
+### MacOS
+
+
 ## Running
 
 
