@@ -18,6 +18,15 @@ Many of us are direct descendents of actions such as those and it is important t
 This software utilizes Spatialite extended SQLite as a data store, .NET Core 6 as an application layer, and React as a front-end. This software demos spatial data modeling using entity framework. It then hosts a range of web application routes utilized by a React application.
 
 
+## Installation
+
+
+## Running
+
+
+## Testing
+
+
 ## Data Store
 
 
