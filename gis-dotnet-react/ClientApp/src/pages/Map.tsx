@@ -44,7 +44,7 @@ export default class Map extends Component {
       <div>
         <h1>Map</h1>
 
-        <p>This is a simple GIS map via Deck.gl. Deck.gl information can be found at <a href='https://www.react-simple-maps.io/'>this link.</a></p>
+        <p>This is a simple GIS map via Deck.gl. Deck.gl information can be found at <a href='https://deck.gl/docs'>this link.</a></p>
 
         <p>As I understand it, Deck.gl is a highly customizable map library for almost any map requirement because of its easily extensible architecture. Learn more at <a href='https://deck.gl/docs'>this link.</a></p>
 
