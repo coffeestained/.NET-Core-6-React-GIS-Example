@@ -1,12 +1,16 @@
 import React from 'react';
-import { lazy } from 'react';
-import { SmartSuspense } from './components/common/SmartSuspense';
+import { Suspense, lazy } from 'react';
+//import {FetchData} from './pages/FetchData'
+
+// Replace with True Loading Component
 import Loading from './components/common/Loading';
+//import {FetchData} from './components/FetchData'
 
 const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) =>
   (
-    <SmartSuspense
-      fallback={ <Loading />} children={ <Component {...props} /> } fallbackDelayMs={ 1000 } fallbackMinDurationMs={ 1000 } />
+    <Suspense fallback={ <Loading /> /* Replace With <LoadingScreen /> */ }>
+      <Component {...props} />
+    </Suspense>
   );
 
 /**
@@ -14,13 +18,22 @@ const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) =>
  */
 
 // HOME PAGE
-const Home = Loadable(lazy(() => import('./pages/Home')));
+const Home = Loadable(lazy(async () => {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return import('./pages/Home')
+}));
 
 // COUNTER PAGE
-const Counter = Loadable(lazy(() => import('./pages/Counter')));
+const Counter = Loadable(lazy(async () => {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return import('./pages/Counter')
+}))
 
 // FETCH PAGE
-const FetchData = Loadable(lazy(() => import('./pages/FetchData')));
+const FetchData = Loadable(lazy(async () => {
+  await new Promise(resolve => setTimeout(resolve, 1000));
+  return import('./pages/FetchData')
+}))
 
 const AppRoutes = [
   {
