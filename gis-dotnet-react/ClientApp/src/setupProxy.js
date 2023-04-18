@@ -5,7 +5,7 @@ const target = env.ASPNETCORE_HTTPS_PORT ? `https://localhost:${env.ASPNETCORE_H
   env.ASPNETCORE_URLS ? env.ASPNETCORE_URLS.split(';')[0] : 'http://localhost:12277';
 
 const context = [
-  "/weatherforecast2",
+  "/weatherforecast",
 ];
 
 const onError = (err, req, resp, target) => {
@@ -13,7 +13,7 @@ const onError = (err, req, resp, target) => {
 }
 
 module.exports = function (app) {
-  console.log(app, target)
+  console.log(target)
   const appProxy = createProxyMiddleware(context, {
     target: target,
     // Handle errors to prevent the proxy middleware from crashing when

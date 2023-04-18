@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-export class FetchData extends Component {
+export default class FetchData extends Component {
   static displayName = FetchData.name;
 
   constructor(props) {
@@ -54,11 +54,6 @@ export class FetchData extends Component {
   async populateWeatherData() {
     const response = await fetch(
       'weatherforecast',
-      {
-        headers: {
-          "accepts":"application/json"
-        }
-      }
     );
     const data = await response.json();
     this.setState({ forecasts: data, loading: false });

@@ -1,16 +1,12 @@
 import React from 'react';
-import { Suspense, lazy } from 'react';
-import {FetchData} from './pages/FetchData'
-
-// Replace with True Loading Component
-import Loading from './pages/Home';
-//import {FetchData} from './components/FetchData'
+import { lazy } from 'react';
+import { SmartSuspense } from './components/common/SmartSuspense';
+import Loading from './components/common/Loading';
 
 const Loadable = (Component: any) => (props: JSX.IntrinsicAttributes) =>
   (
-    <Suspense fallback={ <Loading /> /* Replace With <LoadingScreen /> */ }>
-      <Component {...props} />
-    </Suspense>
+    <SmartSuspense
+      fallback={ <Loading />} children={ <Component {...props} /> } fallbackDelayMs={ 1000 } fallbackMinDurationMs={ 1000 } />
   );
 
 /**
@@ -24,7 +20,7 @@ const Home = Loadable(lazy(() => import('./pages/Home')));
 const Counter = Loadable(lazy(() => import('./pages/Counter')));
 
 // FETCH PAGE
-//const FetchData = Loadable(lazy(() => import('./pages/FetchData')));
+const FetchData = Loadable(lazy(() => import('./pages/FetchData')));
 
 const AppRoutes = [
   {
