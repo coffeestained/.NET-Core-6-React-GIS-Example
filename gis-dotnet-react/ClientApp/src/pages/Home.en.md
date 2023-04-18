@@ -40,7 +40,7 @@ Unit testing via xUnit.
 
 ## Presentation Layer
 
-React + Typescript + React Simple Maps
+React + Typescript + Deck.gl
 
 Maybe more to come.
 

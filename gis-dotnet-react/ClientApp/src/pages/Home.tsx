@@ -13,8 +13,10 @@ export default class Home extends Component {
   }
 
   componentWillMount() {
+    /**
+     * @todo Localization
+     */
     fetch(this.homeMarkdown).then((response) => response.text()).then((text) => {
-      console.log(text)
       this.setState({ markdown: text })
     })
   }

@@ -23,10 +23,10 @@ const Home = Loadable(lazy(async () => {
   return import('./pages/Home')
 }));
 
-// COUNTER PAGE
-const Counter = Loadable(lazy(async () => {
+// Map PAGE
+const Map = Loadable(lazy(async () => {
   await new Promise(resolve => setTimeout(resolve, 1000));
-  return import('./pages/Counter')
+  return import('./pages/Map')
 }))
 
 // FETCH PAGE
@@ -38,15 +38,19 @@ const FetchData = Loadable(lazy(async () => {
 const AppRoutes = [
   {
     index: true,
+    path: '/',
     element: <Home />,
+    navSlug: "Home"
   },
   {
-    path: '/counter',
-    element: <Counter />,
+    path: '/map',
+    element: <Map />,
+    navSlug: "Map"
   },
   {
     path: '/fetch-data',
     element: <FetchData />,
+    navSlug: "Fetch Data Example"
   }
 ];
 
