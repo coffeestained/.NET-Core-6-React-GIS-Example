@@ -3,9 +3,6 @@ import DeckGL from '@deck.gl/react';
 import {LineLayer} from '@deck.gl/layers';
 import { Map as ReactMap } from 'react-map-gl';
 
-// Set your mapbox access token here
-const MAPBOX_ACCESS_TOKEN = 'your_mapbox_token';
-
 // Viewport settings
 const INITIAL_VIEW_STATE = {
   longitude: -122.41669,
@@ -33,10 +30,23 @@ export default class Map extends Component {
     this.incrementCounter = this.incrementCounter.bind(this);
   }
 
+  componentDidMount() {
+    this.getMapBoxKey();
+  }
+
   incrementCounter() {
     this.setState({
       currentCount: this.state.currentCount + 1
     });
+  }
+
+  async getMapBoxKey() {
+    const response = await fetch(
+      'mapbox',
+    );
+    const data = await response.json();
+    console.log(data)
+    this.setState({ mapboxKey: data, loading: false });
   }
 
   render() {
