@@ -5,9 +5,9 @@ import { Map as ReactMap } from 'react-map-gl';
 
 // Viewport settings
 const INITIAL_VIEW_STATE = {
-  longitude: -122.41669,
-  latitude: 37.7853,
-  zoom: 13,
+  longitude: -73.572,
+  latitude: 40.8127,
+  zoom: 8.05,
   pitch: 0,
   bearing: 0
 };
@@ -17,54 +17,64 @@ const data = [
   {sourcePosition: [-122.41669, 37.7853], targetPosition: [-122.41669, 37.781]}
 ];
 
-export default class Map extends Component {
+interface IProps {
+
+}
+
+interface IState {
+  mapboxKey: string;
+  loading: boolean;
+}
+
+export default class Map extends Component<IProps, IState> {
   static displayName = Map.name;
+
+  constructor(props) {
+    super(props);
+  }
 
   private layers = [
     new LineLayer({id: 'line-layer', data})
   ];
 
-  constructor(props) {
-    super(props);
-    this.state = { currentCount: 0 };
-    this.incrementCounter = this.incrementCounter.bind(this);
-  }
-
   componentDidMount() {
     this.getMapBoxKey();
-  }
-
-  incrementCounter() {
-    this.setState({
-      currentCount: this.state.currentCount + 1
-    });
   }
 
   async getMapBoxKey() {
     const response = await fetch(
       'mapbox',
     );
-    const data = await response.json();
-    console.log(data)
+    const data = await response.text();
     this.setState({ mapboxKey: data, loading: false });
   }
 
   render() {
+    const { mapboxKey } = this.state ?? {};
+
     return (
       <div>
         <h1>Map</h1>
 
         <p>This is a simple GIS map via Deck.gl. Deck.gl information can be found at <a href='https://deck.gl/docs'>this link.</a></p>
 
-        <p>As I understand it, Deck.gl is a highly customizable map library for almost any map requirement because of its easily extensible architecture. Learn more at <a href='https://deck.gl/docs'>this link.</a></p>
+        <p>Deck.gl is a highly customizable map library for almost any map requirement because of its easily extensible architecture. Learn more at <a href='https://deck.gl/docs'>this link.</a></p>
 
-        <DeckGL
-          initialViewState={INITIAL_VIEW_STATE}
-          controller={true}
-          layers={this.layers}
-        >
-          <ReactMap mapboxAccessToken={MAPBOX_ACCESS_TOKEN} />
-        </DeckGL>
+        { mapboxKey ?
+          <DeckGL
+            initialViewState={INITIAL_VIEW_STATE}
+            controller={true}
+            style={{width: 600, height: 400}}
+            layers={this.layers}
+          >
+            <ReactMap
+              mapboxAccessToken={mapboxKey}
+              initialViewState={INITIAL_VIEW_STATE}
+              style={{width: 600, height: 400}}
+              mapStyle="mapbox://styles/mapbox/dark-v11" />
+          </DeckGL> : ""
+        }
+
       </div>
     );
   }

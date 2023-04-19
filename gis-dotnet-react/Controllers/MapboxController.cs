@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using gis_dotnet_react.Configurations;
 
 namespace gis_dotnet_react.Controllers;
 
@@ -7,13 +8,19 @@ namespace gis_dotnet_react.Controllers;
 public class MapboxController : ControllerBase
 {
     private readonly ILogger<MapboxController> _logger;
-    private readonly string mapBoxApiURL;
+
+    private readonly IConfiguration Configuration;
+
     private readonly string mapBoxApiKey;
 
-    public MapboxController(ILogger<MapboxController> logger)
+    public MapboxController(ILogger<MapboxController> logger, IConfiguration configuration)
     {
         _logger = logger;
-        mapBoxApiURL = "https://api.mapbox.com/styles/v1/mapbox/dark-v11/static/-73.572,40.8127,8.05,0/600x400";
+        // Eventually I'd like to server the GIS layers directly from the API
+        // For brevity, a simple secret store and allowing the react app to handle it
+        // is ideal.
+        Configuration = configuration;
+        mapBoxApiKey = Configuration["Mapbox:ServiceApiKey"];
     }
 
     [HttpGet]
@@ -23,15 +30,9 @@ public class MapboxController : ControllerBase
         {
             try
             {
-                // Get Map
-                HttpResponseMessage response =  client.GetAsync(mapBoxApiURL).Result;
-
-                response.EnsureSuccessStatusCode();
-
-                // ToString()
-                string responseBody = response.Content.ReadAsStringAsync().Result;
-                Console.WriteLine(responseBody);
-
+                // TODO
+                // Perhaps we should serve the map, layers, etc, from the api if I get time.
+                Console.WriteLine("Serving API Key");
             }
             catch (HttpRequestException e)
             {
@@ -39,6 +40,6 @@ public class MapboxController : ControllerBase
                 Console.WriteLine("Message :{0} ", e.Message);
             }
         }
-        return Ok("atsakas");
+        return Ok(mapBoxApiKey);
     }
 }
