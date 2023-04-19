@@ -1,4 +1,4 @@
-# .NET-Core-6-React-GIS-Example
+# .NET-Core-7-React-GIS-Example
 
 \
 Welcome to the .NET Core 7 + React GIS Example
