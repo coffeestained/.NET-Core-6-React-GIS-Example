@@ -27,13 +27,7 @@ const Home = Loadable(lazy(async () => {
 const Map = Loadable(lazy(async () => {
   await new Promise(resolve => setTimeout(resolve, 1000));
   return import('./pages/Map')
-}))
-
-// FETCH PAGE
-const FetchData = Loadable(lazy(async () => {
-  await new Promise(resolve => setTimeout(resolve, 1000));
-  return import('./pages/FetchData')
-}))
+}));
 
 const AppRoutes = [
   {
@@ -47,11 +41,6 @@ const AppRoutes = [
     element: <Map />,
     navSlug: "Map"
   },
-  {
-    path: '/fetch-data',
-    element: <FetchData />,
-    navSlug: "Fetch Data Example"
-  }
 ];
 
 export default AppRoutes;

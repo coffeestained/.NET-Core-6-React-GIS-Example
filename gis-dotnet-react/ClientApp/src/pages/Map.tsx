@@ -43,7 +43,7 @@ export default class Map extends Component<IProps, IState> {
 
   async getMapBoxKey() {
     const response = await fetch(
-      'mapbox',
+      'mapbox/key',
     );
     const data = await response.text();
     this.setState({ mapboxKey: data, loading: false });

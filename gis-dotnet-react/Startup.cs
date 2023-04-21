@@ -28,11 +28,6 @@ public class Startup
         app.UseAuthorization();
         app.MapRazorPages();
 
-        // Map Routes
-        app.MapControllerRoute(
-            name: "default",
-            pattern: "{controller}/{action=Index}/{id?}");
-
         // Fall Back
         app.MapFallbackToFile("index.html");
 
