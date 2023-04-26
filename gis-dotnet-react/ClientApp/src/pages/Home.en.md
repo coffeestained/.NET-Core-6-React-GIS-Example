@@ -19,7 +19,7 @@ Many of us are direct descendents of actions such as those and it is important t
 ## Description
 
 \
-This software utilizes Spatialite extended SQLite as a data store, .NET Core 7 as an application layer, and React.js utilizing Typescript as a front-end. This software demos spatial data modeling using entity framework. It then hosts a range of web application routes utilized by a React application enabling CRUD operations against geographic data & artifacts serverside.
+This software utilizes provided GEOJSON & public data via external ArcGIS servers as a data store, .NET Core 7 as an application layer, and React.js utilizing Typescript as a front-end. This software demos spatial data modeling using entity framework. It then hosts a range of web application routes utilized by a React application enabling CRUD operations against geographic data & artifacts serverside.
 
 ---
 
@@ -30,7 +30,7 @@ This software utilizes Spatialite extended SQLite as a data store, .NET Core 7 a
 1. Clone the repo `git clone https://github.com/coffeestained/.NET-Core-7-React-GIS-Example.git`
 2. Change directory to the `.csproj` directory
 3. Run `dotnet user-secrets init` to init a dot-net user-secrets store.
-4. Set a mapbox user secret by using `dotnet user-secrets set "Mapbox:ServiceApiKey" "KEY"`
+4. Set a mapbox key as a user secret by using `dotnet user-secrets set "Mapbox:ServiceApiKey" "KEY"`
 
 ---
 
@@ -70,9 +70,9 @@ CICD configuration steps coming soon.
 ## Data Store
 
 \
-Spatialite extended SQLite for now.
+GEOJSON & ArcGIS Servers
 
-I'll develop environment configurations to easily switch between SQLite and a true My/MSSQL backend eventually. /shrug
+I'll develop environment configurations to easily switch between the provided GEOJSON / external ArcGIS backends and your own ArcGIS installation eventually. /shrug
 
 ---
 
